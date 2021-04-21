@@ -1,8 +1,10 @@
 <template>
-  <div id="result">Currently Saying: </div><br>
-  <button id="commencer" v-on:click="commencer"><img src="./Images/mic_icon.jpg" height="512" width="512"/></button>
+  <div class="container">
+    <div id="result">Currently Saying: </div><br>
+    <button id="commencer" v-on:click="commencer"><img src="./Images/mic_icon.jpg" height="51" width="51"/></button>
+    <img id="bubble" src="./Images/bubble.jpg" height="28" width="82"/>
+  </div>
   <button id="arreter" v-on:click="arreter">arreter</button>
-  <img id="bubble" src="./Images/bubble.jpg" height="282" width="820"/>
 </template>
 
 <script>
@@ -50,13 +52,18 @@ export default {
 
 <style>
 
-
 #commencer {
-  grid-column-start: 2;
+  order: 2;
+  center: self;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #result {
-  grid-column-start: 1;
+  order: 0;
+  center: self;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid #000;
   border-radius: 4px;
   font-family: monospace;
@@ -66,14 +73,16 @@ export default {
 }
 
 #bubble {
-  grid-column-start: 3;
+  order: 1;
+  center: self;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-body {
+.container {
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 </style>
