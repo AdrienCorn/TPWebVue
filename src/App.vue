@@ -2,12 +2,11 @@
   <div id="interim">Currently Saying: </div><br>
   <div id="results">Press Start!</div>
 
-  <button id="commencer" v-on:click="commencer">commencer</button>
+  <button id="commencer" v-on:click="commencer(this)">commencer</button>
   <button id="arreter" v-on:click="arreter">arreter</button>
 </template>
 
 <script>
-
 export default {
   name: 'App',
   data() {
@@ -18,12 +17,16 @@ export default {
     }
   },
   methods: {
-    commencer() {
+    vibrateSimple() {
+      navigator.vibrate(200);
+    },
+    commencer(that) {
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
       this.recognition.start();
 
       this.recognition.onresult = function(event) {
+        that.vibrateSimple();
         this.interim_transcript = '';
 
         for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -40,6 +43,7 @@ export default {
     arreter() {
       this.recognition.stop();
     },
+
   }
 }
 </script>
