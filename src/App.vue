@@ -1,7 +1,7 @@
 <template>
   <div id="interim">Currently Saying: </div><br>
   <div id="results">Press Start!</div>
-  <button id="commencer" v-on:click="commencer(this)">commencer</button>
+  <button id="commencer" v-on:click="commencer">commencer</button>
   <button id="arreter" v-on:click="arreter">arreter</button>
 </template>
 
@@ -19,16 +19,16 @@ export default {
   methods: {
     vibrateSimple() {
       navigator.vibrate(200);
-      console.log("viiiiibre");
+      console.log("vibre");
     },
-    commencer(that) {
+    commencer() {
+      let vm = this;
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
       this.recognition.start();
 
       this.recognition.onresult = function(event) {
         this.interim_transcript = '';
-
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             this.final_transcript += event.results[i][0].transcript;
@@ -38,10 +38,10 @@ export default {
         }
         document.getElementById('results').innerHTML = this.final_transcript;
         document.getElementById('interim').innerHTML = "Currently Saying: " + this.interim_transcript;
-        for (let j = 0; j < that.keyWord.length; j ++) {
-          if (this.final_transcript.indexOf(that.keyWord[j]) > -1) {
-            that.vibrateSimple();
-            that.arreter();
+        for (let j = 0; j < vm.keyWord.length; j ++) {
+          if (this.final_transcript.indexOf(vm.keyWord[j]) > -1) {
+            vm.vibrateSimple();
+            vm.arreter();
           }
         }
       };
