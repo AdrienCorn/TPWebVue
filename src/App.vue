@@ -1,7 +1,6 @@
 <template>
   <div id="interim">Currently Saying: </div><br>
   <div id="results">Press Start!</div>
-
   <button id="commencer" v-on:click="commencer(this)">commencer</button>
   <button id="arreter" v-on:click="arreter">arreter</button>
 </template>
@@ -14,11 +13,13 @@ export default {
       recognition : new window.webkitSpeechRecognition(),
       final_transcript : '',
       interim_transcript : '',
+      keyWord : ["vibre","tremble","vibration"],
     }
   },
   methods: {
     vibrateSimple() {
       navigator.vibrate(200);
+      console.log("viiiiibre");
     },
     commencer(that) {
       this.recognition.continuous = true;
@@ -26,7 +27,6 @@ export default {
       this.recognition.start();
 
       this.recognition.onresult = function(event) {
-        that.vibrateSimple();
         this.interim_transcript = '';
 
         for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -38,6 +38,12 @@ export default {
         }
         document.getElementById('results').innerHTML = this.final_transcript;
         document.getElementById('interim').innerHTML = "Currently Saying: " + this.interim_transcript;
+        for (let j = 0; j < that.keyWord.length; j ++) {
+          if (this.final_transcript.indexOf(that.keyWord[j]) > -1) {
+            that.vibrateSimple();
+            that.arreter();
+          }
+        }
       };
     },
     arreter() {
