@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <div id="result">Currently Saying: </div><br>
-    <button id="commencer" v-on:click="commencer"><img src="./Images/mic_icon.jpg" height="51" width="51"/></button>
+    <button id="commencer" v-on:click="commencer"><img id="mic_img" src="./Images/mic_icon.jpg"/></button>
     <img id="bubble" src="./Images/bubble.jpg" height="28" width="82"/>
   </div>
-  <button id="arreter" v-on:click="arreter">arreter</button>
 </template>
 
 <script>
@@ -54,9 +53,17 @@ export default {
 
 #commencer {
   order: 2;
+  border: 0px;
+  background: white;
   center: self;
+  height: 30%;
+  width: 30%;
   margin-left: auto;
   margin-right: auto;
+}
+
+#mic_img {
+  height: 100%;
 }
 
 #result {
@@ -64,17 +71,20 @@ export default {
   center: self;
   margin-left: auto;
   margin-right: auto;
+  height: 40px;
+  /*margin: auto;*/
   border: 1px solid #000;
   border-radius: 4px;
   font-family: monospace;
   font-size: 18px;
-  width: 800px;
-  margin: auto;
+  width: 90%;
 }
 
 #bubble {
   order: 1;
-  center: self;
+  /*center: self;*/
+  width: 50%;
+  height: 80%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -84,5 +94,14 @@ export default {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr;
+}
+
+@media (min-width:720px){
+  .container{
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
 }
 </style>
