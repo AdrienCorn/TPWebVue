@@ -1,12 +1,8 @@
 <template>
   <div class="container">
     <div id="result">Currently Saying: </div><br>
-<<<<<<< HEAD
-    <button id="commencer" v-on:click="commencer"><img id="mic_img" src="./Images/mic_icon.jpg"/></button>
-=======
-    <button id="commencer" v-on:click="record"><img src="./Images/mic_icon.jpg" height="51" width="51"/></button>
->>>>>>> 8157c5d2dea1348e6eb0582f99e63301d5502987
-    <img id="bubble" src="./Images/bubble.jpg" height="28" width="82"/>
+    <button id="commencer" v-on:click="record"><img id='mic_img' src="./Images/mic_icon.jpg"/></button>
+    <img id="bubble" src="./Images/bubble.jpg"/>
   </div>
 </template>
 
@@ -63,7 +59,6 @@ export default {
   order: 2;
   border: 0px;
   background: white;
-  center: self;
   height: 30%;
   width: 30%;
   margin-left: auto;
@@ -95,12 +90,13 @@ export default {
   height: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0px;
 }
 
 .container {
   text-align: center;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
 }
 
@@ -108,7 +104,7 @@ export default {
   .container{
     text-align: center;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
   }
 }
